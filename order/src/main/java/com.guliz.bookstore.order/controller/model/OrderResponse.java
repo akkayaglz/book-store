@@ -3,6 +3,8 @@ package com.guliz.bookstore.order.controller.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 public class OrderResponse extends BaseResponse {
@@ -13,5 +15,7 @@ public class OrderResponse extends BaseResponse {
     private String customerId;
     private String stockId;
     private int quantity;
+    private Double totalPrice;
+    private Date createdAt;
 
 }

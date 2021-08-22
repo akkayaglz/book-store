@@ -12,7 +12,7 @@
 
     <modules>
         <module>customer</module>
-        <module>book</module>
+        <module>stock</module>
         <module>order</module>
         <module>security</module>
     </modules>

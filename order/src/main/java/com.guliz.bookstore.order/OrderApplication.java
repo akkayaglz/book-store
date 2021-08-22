@@ -8,9 +8,8 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 
 @SpringBootApplication(exclude = EmbeddedMongoAutoConfiguration.class)
-@ComponentScan(basePackages = {"com.guliz.bookstore.order", "com.guliz.bookstore.security"})
-@EnableMongoRepositories({"com.guliz.bookstore.order.data", "com.guliz.bookstore.customer.data",
-        "com.guliz.bookstore.security.data"})
+@ComponentScan(basePackages = {"com.guliz.bookstore.order", "com.guliz.bookstore.security", "com.guliz.bookstore.stock"})
+@EnableMongoRepositories({"com.guliz.bookstore.order.data", "com.guliz.bookstore.security.data", "com.guliz.bookstore.stock.data"})
 public class OrderApplication {
     public static void main(String[] args) {
         SpringApplication.run(OrderApplication.class, args);
