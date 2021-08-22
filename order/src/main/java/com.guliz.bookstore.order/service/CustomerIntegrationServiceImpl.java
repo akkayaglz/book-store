@@ -12,7 +12,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Optional;
 
-
 @Service
 public class CustomerIntegrationServiceImpl implements CustomerIntegrationService {
 

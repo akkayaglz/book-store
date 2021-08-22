@@ -3,7 +3,6 @@ package com.guliz.bookstore.order.controller.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 @Data
