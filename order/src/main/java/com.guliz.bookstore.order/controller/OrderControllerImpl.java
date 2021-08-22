@@ -1,5 +1,6 @@
 package com.guliz.bookstore.order.controller;
 
+import com.guliz.bookstore.order.controller.model.OrderListResponse;
 import com.guliz.bookstore.order.controller.model.OrderRequest;
 import com.guliz.bookstore.order.controller.model.OrderResponse;
 import com.guliz.bookstore.order.mapper.OrderMapper;
@@ -29,5 +30,18 @@ public class OrderControllerImpl implements OrderController {
         OrderResponse orderResponse = orderMapper.toOrderResponse(orderDto);
         orderResponse.setMessage("new order is created..");
         return ResponseEntity.ok(orderResponse);
+    }
+
+    @Override
+    public ResponseEntity<OrderResponse> getOrderById(String orderId) {
+        return ResponseEntity.ok(orderMapper.toOrderResponse(orderService.getOrderById(orderId)));
+    }
+
+    @Override
+    public ResponseEntity<OrderListResponse> listByDateRange(@RequestBody OrderRequest orderRequest) {
+        OrderListResponse orderListResponse = new OrderListResponse();
+        orderListResponse
+                .setOrderList(orderService.listOrderByDateRange(orderRequest.getStartDate(), orderRequest.getEndDate()));
+        return ResponseEntity.ok(orderListResponse);
     }
 }
