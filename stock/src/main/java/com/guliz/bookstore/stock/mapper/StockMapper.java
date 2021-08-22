@@ -1,5 +1,7 @@
 package com.guliz.bookstore.stock.mapper;
 
+import com.guliz.bookstore.stock.controller.model.BookRequest;
+import com.guliz.bookstore.stock.controller.model.BookResponse;
 import com.guliz.bookstore.stock.data.StockEntity;
 import com.guliz.bookstore.stock.service.model.StockDto;
 import org.mapstruct.Mapper;
@@ -15,4 +17,8 @@ public interface StockMapper {
     StockEntity toStockEntity(StockDto stockDto);
 
     StockDto toStockDto(StockEntity stockEntity);
+
+    StockDto toStockDto(BookRequest bookRequest);
+
+    BookResponse toBookResponse(StockDto stockDto);
 }
