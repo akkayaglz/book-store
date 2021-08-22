@@ -44,11 +44,8 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
         final String authorizationHeader = httpServletRequest.getHeader(SecurityConstants.AUTHORIZATION);
 
-        if (authorizationHeader == null
-                || !authorizationHeader.startsWith(SecurityConstants.TOKEN_PREFIX)) {
-            filterChain.doFilter(httpServletRequest, httpServletResponse);
-
-        } else {
+        if (authorizationHeader != null
+                && authorizationHeader.startsWith(SecurityConstants.TOKEN_PREFIX)) {
 
             String token = authorizationHeader
                     .replace(SecurityConstants.TOKEN_PREFIX, "");
@@ -58,6 +55,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
             if (user != null) {
                 UserDetails userDetails = bookStoreUserDetailService.loadUserByUsername(user);
 
+                //TODO: ExpiredJwtException
                 if (jwtValidatorService.validateToken(token, userDetails)) {
                     UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
                             new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
@@ -70,5 +68,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
             }
 
         }
+
+        filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
 }

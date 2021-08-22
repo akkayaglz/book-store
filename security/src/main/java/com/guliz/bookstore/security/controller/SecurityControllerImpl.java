@@ -24,25 +24,24 @@ public class SecurityControllerImpl implements SecurityController {
     private JwtGeneratorService jwtGeneratorService;
     private AuthenticationManager authenticationManager;
     private BookStoreUserDetailService detailService;
-    private BookStoreUserService customerService;
-
+    private BookStoreUserService userService;
 
     @Autowired
     public SecurityControllerImpl(AuthenticationManager authenticationManager,
                                   BookStoreUserDetailService detailService,
                                   JwtGeneratorService jwtGeneratorService,
-                                  BookStoreUserService customerService) {
+                                  BookStoreUserService userService) {
         this.authenticationManager = authenticationManager;
         this.detailService = detailService;
         this.jwtGeneratorService = jwtGeneratorService;
-        this.customerService = customerService;
+        this.userService = userService;
     }
 
     @Override
     public ResponseEntity<SecurityDto> register(@RequestBody SecurityRequest securityRequest) {
         SecurityDto securityDto = new SecurityDto(
                 securityRequest.getUsername(), securityRequest.getPassword());
-        return ResponseEntity.ok(customerService.register(securityDto));
+        return ResponseEntity.ok(userService.register(securityDto));
     }
 
     @Override
