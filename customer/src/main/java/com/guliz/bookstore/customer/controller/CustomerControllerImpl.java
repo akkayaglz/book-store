@@ -5,10 +5,13 @@ import com.guliz.bookstore.customer.controller.model.CustomerResponse;
 import com.guliz.bookstore.customer.mapper.CustomerMapper;
 import com.guliz.bookstore.customer.service.CustomerService;
 import com.guliz.bookstore.customer.service.model.CustomerDto;
+import com.guliz.bookstore.customer.service.model.OrderDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class CustomerControllerImpl implements CustomerController {
@@ -33,5 +36,10 @@ public class CustomerControllerImpl implements CustomerController {
     @Override
     public ResponseEntity<Boolean> checkCustomer(String customerId) {
         return ResponseEntity.ok(customerService.checkCustomer(customerId));
+    }
+
+    @Override
+    public ResponseEntity<List<OrderDto>> getOrdersByCustomerId(String customerId) {
+        return ResponseEntity.ok(customerService.getOrdersByCustomerId(customerId));
     }
 }

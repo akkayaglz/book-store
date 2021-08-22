@@ -10,12 +10,9 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class BookRequest {
 
-    @NotNull
-    private String customerId;
-    private String firstName;
-    private String lastName;
-    @NotNull
-    @Email
-    private String email;
-    private String address;
+    private String bookId;
+    private String bookName;
+    private String author;
+    private int stockCount;
+    private Double price;
 }

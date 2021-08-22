@@ -42,7 +42,7 @@ public class StockServiceImpl implements StockService {
 
     @Override
     public StockDto newStock(StockDto stockDto) {
-        stockRepository.findById(stockDto.getBookId())
+        stockRepository.findByBookName(stockDto.getBookName())
                 .ifPresent(t -> {
                             throw new StockServiceException("there is already book exist");
                         }

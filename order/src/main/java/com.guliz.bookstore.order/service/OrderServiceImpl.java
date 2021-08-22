@@ -5,8 +5,7 @@ import com.guliz.bookstore.order.data.OrderRepository;
 import com.guliz.bookstore.order.mapper.OrderMapper;
 import com.guliz.bookstore.order.service.exception.OrderServiceException;
 import com.guliz.bookstore.order.service.model.OrderDto;
-import com.guliz.bookstore.stock.service.StockService;
-import com.guliz.bookstore.stock.service.model.StockDto;
+import com.guliz.bookstore.order.service.model.OrderStockDto;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,15 +26,15 @@ public class OrderServiceImpl implements OrderService {
 
     private OrderRepository orderRepository;
     private CustomerIntegrationService customerIntegrationService;
-    private StockService stockService;
+    private StockIntegrationService stockIntegrationService;
 
     @Autowired
     public OrderServiceImpl(OrderRepository orderRepository,
                             CustomerIntegrationService customerIntegrationService,
-                            StockService stockService) {
+                            StockIntegrationService stockIntegrationService) {
         this.orderRepository = orderRepository;
         this.customerIntegrationService = customerIntegrationService;
-        this.stockService = stockService;
+        this.stockIntegrationService = stockIntegrationService;
     }
 
     @Override
@@ -46,10 +45,10 @@ public class OrderServiceImpl implements OrderService {
 
             synchronized (this) {
                 logger.info("checking stock id...");
-                StockDto stockDto = stockService.order(orderDto.getStockId(), orderDto.getQuantity());
+                OrderStockDto orderStockDto = stockIntegrationService.orderStock(orderDto.getStockId(), orderDto.getQuantity());
 
                 logger.info("placing order...");
-                OrderEntity orderEntity = placeTheOrder(orderDto, stockDto);
+                OrderEntity orderEntity = placeTheOrder(orderDto, orderStockDto);
 
                 return orderMapper.toOrderDto(orderEntity);
             }
@@ -60,7 +59,17 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDto getOrderById(String orderId) {
-        return orderMapper.toOrderDto(orderRepository.findById(orderId).get());
+        return orderMapper.toOrderDto(orderRepository.findById(orderId)
+                .orElseThrow(() -> new OrderServiceException("No order found for given order Id")));
+    }
+
+    @Override
+    public List<OrderDto> getOrderByCustomerId(String customerId) {
+        List<OrderEntity> orderEntityList = orderRepository.findByCustomerId(customerId)
+                .orElseThrow(() -> new OrderServiceException("No order found for given customer id"));
+        return orderEntityList.stream()
+                .map(orderMapper::toOrderDto)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -71,10 +80,10 @@ public class OrderServiceImpl implements OrderService {
                 .collect(Collectors.toList());
     }
 
-    private OrderEntity placeTheOrder(OrderDto orderDto, StockDto stockDto) {
+    private OrderEntity placeTheOrder(OrderDto orderDto, OrderStockDto orderStockDto) {
         Calendar calendar = Calendar.getInstance();
         orderDto.setCreatedAt(calendar.getTime());
-        orderDto.setTotalPrice(stockDto.getPrice() * orderDto.getQuantity());
+        orderDto.setTotalPrice(orderStockDto.getPrice() * orderDto.getQuantity());
         return orderRepository.save(orderMapper.toOrderEntity(orderDto));
     }
 }
