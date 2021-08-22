@@ -31,11 +31,16 @@ public class BookControllerImpl implements BookController {
     }
 
     @Override
-    public ResponseEntity<BookResponse> updateStock(BookRequest bookRequest) {
+    public ResponseEntity<BookResponse> updateStock(@RequestBody BookRequest bookRequest) {
         StockDto stockDto = stockService.updateStock(stockMapper.toStockDto(bookRequest));
         BookResponse bookResponse = stockMapper.toBookResponse(stockDto);
         bookResponse.setMessage("existed stock has been updated...");
         return ResponseEntity.ok(bookResponse);
+    }
+
+    @Override
+    public ResponseEntity<StockDto> orderStock(String stockId, int quantity) {
+        return ResponseEntity.ok(stockService.order(stockId,quantity));
     }
 
 }

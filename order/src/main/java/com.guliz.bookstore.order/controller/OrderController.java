@@ -19,6 +19,9 @@ public interface OrderController {
     @GetMapping(value = "/id")
     ResponseEntity<OrderResponse> getOrderById(String orderId);
 
+    @GetMapping(value = "/customerId")
+    ResponseEntity<OrderListResponse> getOrderByCustomerId(String customerId);
+
     @PostMapping(value = "/list/date-range")
     ResponseEntity<OrderListResponse> listByDateRange(OrderRequest orderRequest);
 

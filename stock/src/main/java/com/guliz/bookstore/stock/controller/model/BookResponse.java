@@ -7,12 +7,11 @@ import lombok.Setter;
 @Setter
 public class BookResponse extends BaseResponse {
 
-    private static final long serialVersionUID = 6228041194679713L;
+    private static final long serialVersionUID = 4306457570118321475L;
 
-    private String customerId;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String address;
+    private String bookName;
+    private String author;
+    private int stockCount;
+    private Double price;
 
 }

@@ -4,8 +4,12 @@ import com.guliz.bookstore.customer.data.CustomerRepository;
 import com.guliz.bookstore.customer.mapper.CustomerMapper;
 import com.guliz.bookstore.customer.service.exception.CustomerServiceException;
 import com.guliz.bookstore.customer.service.model.CustomerDto;
+import com.guliz.bookstore.customer.service.model.OrderDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -13,10 +17,13 @@ public class CustomerServiceImpl implements CustomerService {
     private static final CustomerMapper customerMapper = CustomerMapper.INSTANCE;
 
     private CustomerRepository customerRepository;
+    private OrderIntegrationService orderIntegrationService;
 
     @Autowired
-    public CustomerServiceImpl(CustomerRepository customerRepository) {
+    public CustomerServiceImpl(CustomerRepository customerRepository,
+                               OrderIntegrationService orderIntegrationService) {
         this.customerRepository = customerRepository;
+        this.orderIntegrationService = orderIntegrationService;
     }
 
     @Override
@@ -36,6 +43,15 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Boolean checkCustomer(String customerId) {
         return isExistCustomerId(customerId);
+    }
+
+    @Override
+    public List<OrderDto> getOrdersByCustomerId(String customerId) {
+        Optional<List<OrderDto>> orderDtos = orderIntegrationService.listOrders(customerId);
+        if(orderDtos.get().isEmpty()){
+            throw new CustomerServiceException("no orders have been found for given customer id");
+        }
+        return orderDtos.get();
     }
 
     private boolean isExistCustomerId(String customerId) {

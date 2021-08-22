@@ -11,6 +11,8 @@ public interface OrderService {
 
     OrderDto getOrderById(String orderId);
 
+    List<OrderDto> getOrderByCustomerId(String customerId);
+
     List<OrderDto> listOrderByDateRange(Date start, Date end);
 
 }

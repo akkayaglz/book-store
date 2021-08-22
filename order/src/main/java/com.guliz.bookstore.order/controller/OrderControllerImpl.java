@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class OrderControllerImpl implements OrderController {
 
@@ -38,10 +40,23 @@ public class OrderControllerImpl implements OrderController {
     }
 
     @Override
-    public ResponseEntity<OrderListResponse> listByDateRange(@RequestBody OrderRequest orderRequest) {
+    public ResponseEntity<OrderListResponse> getOrderByCustomerId(String customerId) {
+        List<OrderDto> orderDtos = orderService.getOrderByCustomerId(customerId);
         OrderListResponse orderListResponse = new OrderListResponse();
-        orderListResponse
-                .setOrderList(orderService.listOrderByDateRange(orderRequest.getStartDate(), orderRequest.getEndDate()));
+        orderListResponse.setOrderList(orderDtos);
+        orderListResponse.setMessage(orderDtos.isEmpty() ? "No order found with given customer Id"
+                : orderDtos.size() + " element found with given customer Id.");
+        return ResponseEntity.ok(orderListResponse);
+    }
+
+    @Override
+    public ResponseEntity<OrderListResponse> listByDateRange(@RequestBody OrderRequest orderRequest) {
+        List<OrderDto> orderDtos = orderService.listOrderByDateRange(orderRequest.getStartDate(),
+                orderRequest.getEndDate());
+        OrderListResponse orderListResponse = new OrderListResponse();
+        orderListResponse.setOrderList(orderDtos);
+        orderListResponse.setMessage(orderDtos.isEmpty() ? "No order found with given date range."
+                : orderDtos.size() + " element found with given date range.");
         return ResponseEntity.ok(orderListResponse);
     }
 }
