@@ -14,18 +14,18 @@ import static com.guliz.bookstore.security.constants.SecurityConstants.AUTHORIZA
 @Component
 public class AuthorizationInterceptor implements HandlerInterceptor {
 
-    private final SecurityContext securityContext;
+    private final SecurityContext context;
 
     @Autowired
-    public AuthorizationInterceptor(SecurityContext securityContext) {
-        this.securityContext = securityContext;
+    public AuthorizationInterceptor(SecurityContext context) {
+        this.context = context;
     }
 
     @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) {
 
-        securityContext.setToken(Optional.ofNullable(request.getHeader(AUTHORIZATION))
+        context.setToken(Optional.ofNullable(request.getHeader(AUTHORIZATION))
                 .orElse(null));
         return true;
     }

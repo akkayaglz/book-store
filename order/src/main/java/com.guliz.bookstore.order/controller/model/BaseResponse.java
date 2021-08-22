@@ -1,4 +1,4 @@
-package com.guliz.bookstore.customer.controller.model;
+package com.guliz.bookstore.order.controller.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
@@ -13,7 +13,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class BaseResponse implements Serializable {
 
-    private static final long serialVersionUID = 9192004477913969233L;
+    private static final long serialVersionUID = 8967972037833185777L;
 
     @NotNull
     @JsonProperty("message")

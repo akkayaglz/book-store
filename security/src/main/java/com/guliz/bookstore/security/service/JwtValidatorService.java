@@ -12,7 +12,7 @@ import java.util.function.Function;
 @Service
 public class JwtValidatorService {
 
-    @Value("${security.secret:secret}")
+    @Value("${jwt.secret.key:secret}")
     private String secretKey;
 
     public String extractUsername(String token) {
