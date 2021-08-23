@@ -37,7 +37,7 @@ Responsible for  statistic operations such as;
 
 ### Service Design
 
-![deepLinks](src\main\resources\service-design.png)
+![deepLinks](src\main\resources\service-design.jpg)
 
 ### User Scenario
 ##### 1. Register with username and password - POST(http://localhost:9090/security/v1/register) (add body and token)
