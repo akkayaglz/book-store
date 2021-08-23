@@ -13,9 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Month;
-import java.time.Year;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -89,9 +86,6 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public StatisticDto getMontlyStatistic(int month, int year) {
         List<OrderEntity> orderEntityList = orderRepository.findByCustomQuery(year, month);
-        if(orderEntityList.isEmpty()){
-            throw new RuntimeException("sdmakd");
-        }
         StatisticDto statisticDto = new StatisticDto();
         statisticDto.setMonth(month);
         statisticDto.setTotalOrderCount(orderEntityList.size());
