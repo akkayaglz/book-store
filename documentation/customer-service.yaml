@@ -1,0 +1,200 @@
+---
+openapi: 3.0.1
+info:
+  title: defaultTitle
+  description: defaultDescription
+  version: 0.1
+servers:
+- url: http://localhost:9090
+paths:
+  /security/v1/login:
+    post:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                username:
+                  type: string
+            examples:
+              "0":
+                value: |-
+                  {
+                      "username": "guliz",
+                      "password": "guliz"
+                  }
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            text/plain;charset=UTF-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+      - url: http://localhost:9090
+    servers:
+    - url: http://localhost:9090
+  /security/v1/register:
+    post:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                username:
+                  type: string
+            examples:
+              "0":
+                value: |-
+                  {
+                      "username": "guliz",
+                      "password": "guliz"
+                  }
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  password:
+                    type: string
+                  username:
+                    type: string
+              examples:
+                "0":
+                  value: '{"username":"guliz","password":"guliz"}'
+      servers:
+      - url: http://localhost:9090
+    servers:
+    - url: http://localhost:9090
+  /customer/v1/new-customer:
+    post:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                email:
+                  type: string
+                address:
+                  type: string
+            examples:
+              "0":
+                value: |-
+                  {
+                      "firstName": "guliz",
+                      "lastName": "tiras",
+                      "email": "email@customer.com",
+                      "address": "address"
+                  }
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  responseMessage:
+                    type: string
+              examples:
+                "0":
+                  value: '{
+                  "customerId": "6123725dd7b2627e04ede388",
+                  "firstName": "guliz",
+                  "lastName": "tiras",
+                  "email": "email@customer.com",
+                  "address": "address",
+                  "message": "new customer is created.."
+                  }'
+      servers:
+      - url: http://localhost:9090
+    servers:
+    - url: http://localhost:9090
+  /customer-service/v1/check:
+    get:
+      description: Auto generated using Swagger Inspector
+      parameters:
+      - name: customerId
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: 5f9d88688ed99115ff223e34
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                "0":
+                  value: "true"
+      servers:
+      - url: http://localhost:9090
+    servers:
+    - url: http://localhost:9090
+  /customer-service/v1/list-orders:
+    get:
+      description: Auto generated using Swagger Inspector
+      parameters:
+        - name: customerId
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+          example: 5f9d88688ed99115ff223e34
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                "0":
+                  value: {
+                    "orderId": "612373fa0539b94202d2649a",
+                    "customerId": "6123725dd7b2627e04ede388",
+                    "stockId": "1",
+                    "quantity": 2,
+                    "totalPrice": 6.0,
+                    "createdAt": "2021-08-23T10:10:02.157+00:00"
+                  }
+      servers:
+        - url: http://localhost:9090
+    servers:
+      - url: http://localhost:9090
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: http://yourauthurl.com
+          scopes:
+            scope_name: Enter your scopes here

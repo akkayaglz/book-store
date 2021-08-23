@@ -1,0 +1,62 @@
+---
+openapi: 3.0.1
+info:
+  title: defaultTitle
+  description: defaultDescription
+  version: 0.1
+servers:
+  - url: http://localhost:9096
+paths:
+  /statistics/v1/monthly-order:
+    post:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customerId:
+                  type: string
+                month:
+                  type: integer
+                year:
+                  type: integer
+            examples:
+              "0":
+                value: |-
+                  {
+                     "customerId": "612227ca602ffe7a65b8293b",
+                     "month": 8,
+                     "year": 2021
+                  }
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            text/plain;charset=UTF-8:
+              schema:
+                type: string
+              examples:
+                "0":
+                  value: |-
+                    {
+                      "month": 8,
+                      "totalOrderCount": 6,
+                      "totalBookCount": 17,
+                      "totalPurchasedAmount": 51.0
+                    }
+
+      servers:
+        - url: http://localhost:9096
+    servers:
+      - url: http://localhost:9096
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: http://yourauthurl.com
+          scopes:
+            scope_name: Enter your scopes here

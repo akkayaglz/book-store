@@ -1,0 +1,120 @@
+---
+openapi: 3.0.1
+info:
+  title: defaultTitle
+  description: defaultDescription
+  version: 0.1
+servers:
+  - url: http://localhost:9094
+paths:
+  /stock/v1/new-book:
+    post:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                bookName:
+                  type: string
+                author:
+                  type: string
+                stockCount:
+                  type: integer
+                price:
+                  type: integer
+            examples:
+              "0":
+                value: |-
+                  {
+                     "bookName": "harry potter 2 ",
+                     "author": "JJkk",
+                     "stockCount": 5,
+                     "price": 12.0
+                  }
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            text/plain;charset=UTF-8:
+              schema:
+                type: string
+              examples:
+                "0":
+                  value: |-
+                    {
+                       "bookName": "harry potter 2 ",
+                       "author": "JJkk",
+                       "stockCount": 5,
+                       "price": 12.0,
+                       "message": "new book stock has been added..."
+                    }
+
+      servers:
+        - url: http://localhost:9094
+    servers:
+      - url: http://localhost:9094
+  /stock/v1/update-book:
+    put:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                bookId:
+                  type: string
+                bookName:
+                  type: string
+                author:
+                  type: string
+                stockCount:
+                  type: integer
+                price:
+                  type: integer
+            examples:
+              "0":
+                value: |-
+                  {
+                      "bookId": "6122a9464a75b30aa5bfb459",
+                      "bookName": "harry potter azkaban",
+                      "author": "JJJJJ",
+                      "stockCount": 12,
+                      "price": 15.0
+                  }
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  password:
+                    type: string
+                  username:
+                    type: string
+              examples:
+                "0":
+                  value: '{
+                    "bookName": "harry potter azkaban",
+                    "author": "JJJJJ",
+                    "stockCount": 12,
+                    "price": 15.0,
+                    "message": "existed stock has been updated..."
+                  }'
+      servers:
+        - url: http://localhost:9094
+    servers:
+      - url: http://localhost:9094
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: http://yourauthurl.com
+          scopes:
+            scope_name: Enter your scopes here

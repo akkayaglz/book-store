@@ -18,7 +18,7 @@ import java.util.List;
 public interface CustomerController {
 
     @PostMapping(value = "/new-customer")
-    ResponseEntity<CustomerResponse> newCustomer(@Valid CustomerRequest customerRequest);
+    ResponseEntity<CustomerResponse> newCustomer(CustomerRequest customerRequest);
 
     @GetMapping(value = "/check")
     ResponseEntity<Boolean> checkCustomer(@NotNull String customerId);

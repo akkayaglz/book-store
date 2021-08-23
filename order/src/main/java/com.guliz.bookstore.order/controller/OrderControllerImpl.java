@@ -46,7 +46,7 @@ public class OrderControllerImpl implements OrderController {
         OrderListResponse orderListResponse = new OrderListResponse();
         orderListResponse.setOrderList(orderDtos);
         orderListResponse.setMessage(orderDtos.isEmpty() ? "No order found with given customer Id"
-                : orderDtos.size() + " element found with given customer Id.");
+                : "element found with given customer Id.");
         return ResponseEntity.ok(orderListResponse);
     }
 
