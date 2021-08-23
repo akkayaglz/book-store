@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Validated
@@ -16,12 +18,12 @@ import java.util.List;
 public interface CustomerController {
 
     @PostMapping(value = "/new-customer")
-    ResponseEntity<CustomerResponse> newCustomer(CustomerRequest customerRequest);
+    ResponseEntity<CustomerResponse> newCustomer(@Valid CustomerRequest customerRequest);
 
     @GetMapping(value = "/check")
-    ResponseEntity<Boolean> checkCustomer(String customerId);
+    ResponseEntity<Boolean> checkCustomer(@NotNull String customerId);
 
     @GetMapping(value = "/list-orders")
-    ResponseEntity<List<OrderDto>> getOrdersByCustomerId(String customerId);
+    ResponseEntity<List<OrderDto>> getOrdersByCustomerId(@NotNull String customerId);
 
 }
