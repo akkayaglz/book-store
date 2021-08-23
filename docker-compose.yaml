@@ -1,0 +1,45 @@
+version: '2'
+services:
+  customer:
+    image: "customer"
+    build: ./customer
+    ports:
+      - "9090:9090"
+    hostname: customer
+    environment:
+      SECRET: secret
+    links:
+      - "db:mongo"
+  order:
+    build: ./order
+    ports:
+      - "9092:9092"
+    hostname: order
+    environment:
+      SECRET: secret
+    links:
+      - "db:mongo"
+      - "customer:customer"
+  statics:
+    build: ./statics
+    ports:
+      - "9096:9096"
+    hostname: statics
+    environment:
+      SECRET: secret
+    links:
+      - "db:mongo"
+  stock:
+    build: ./stock
+    ports:
+      - "9094:9094"
+    hostname: stock
+    environment:
+      SECRET: secret
+    links:
+      - "db:mongo"
+  db:
+    image: "mongo"
+    hostname: mongo
+    ports:
+      - "27017-27019:27017-27019"
