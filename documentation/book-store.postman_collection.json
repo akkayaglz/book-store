@@ -1,0 +1,497 @@
+{
+	"info": {
+		"_postman_id": "038c0995-806e-4a93-8d4f-b1e24e5c7c11",
+		"name": "book-store",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Customer Controller",
+			"item": [
+				{
+					"name": "new customer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJndWxpeiIsImlhdCI6MTYyOTcxMjk3MiwiZXhwIjoxNjI5NzMwOTcyfQ.2Qu3VfWprm-e6H82jeHjy4v0AcH10aX8Z7DdyITvfdcQN08eq02EIIIg269cF_4SRqzKvWquWYE7N2UaDKWa7w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"firstName\": \"guliz\",\r\n\"lastName\": \"guliz\",\r\n\"email\": \"guliz@gmail.com\",\r\n\"address\": \"guliz\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/customer/v1/new-customer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"customer",
+								"v1",
+								"new-customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check customer",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJndWxpeiIsImlhdCI6MTYyOTcxMjk3MiwiZXhwIjoxNjI5NzMwOTcyfQ.2Qu3VfWprm-e6H82jeHjy4v0AcH10aX8Z7DdyITvfdcQN08eq02EIIIg269cF_4SRqzKvWquWYE7N2UaDKWa7w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/customer/v1/check?customerId=6123725dd7b2627e04ede388",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"customer",
+								"v1",
+								"check"
+							],
+							"query": [
+								{
+									"key": "customerId",
+									"value": "6123725dd7b2627e04ede388"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list all orders by customer id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJndWxpeiIsImlhdCI6MTYyOTY1OTU4MCwiZXhwIjoxNjI5Njc3NTgwfQ.-CzSffX2dFFu_dkqpnpfyJHV9yuPMX06e_WQ1PIvMqR2suiwi8LBAUfF5Ybm8hhmP2rtjAL2yWVl175zTXzKBg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/customer/v1/list-orders?customerId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"customer",
+								"v1",
+								"list-orders"
+							],
+							"query": [
+								{
+									"key": "customerId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Book Controller",
+			"item": [
+				{
+					"name": "new book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJndWxpeiIsImlhdCI6MTYyOTcxMjk3MiwiZXhwIjoxNjI5NzMwOTcyfQ.2Qu3VfWprm-e6H82jeHjy4v0AcH10aX8Z7DdyITvfdcQN08eq02EIIIg269cF_4SRqzKvWquWYE7N2UaDKWa7w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"bookName\": \"harry potter 2 \",\r\n\"author\": \"JJkk\",\r\n\"stockCount\": 5,\r\n\"price\": 12.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9094/stock/v1/new-book",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9094",
+							"path": [
+								"stock",
+								"v1",
+								"new-book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJndWxpeiIsImlhdCI6MTYyOTcxMjk3MiwiZXhwIjoxNjI5NzMwOTcyfQ.2Qu3VfWprm-e6H82jeHjy4v0AcH10aX8Z7DdyITvfdcQN08eq02EIIIg269cF_4SRqzKvWquWYE7N2UaDKWa7w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bookId\": \"6122a9464a75b30aa5bfb459\",\r\n    \"bookName\": \"harry potter azkaban\",\r\n    \"author\": \"JJJJJ\",\r\n    \"stockCount\": 12,\r\n    \"price\": 15.0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9094/stock/v1/update-book",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9094",
+							"path": [
+								"stock",
+								"v1",
+								"update-book"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order Controller",
+			"item": [
+				{
+					"name": "new order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJndWxpeiIsImlhdCI6MTYyOTcxMjk3MiwiZXhwIjoxNjI5NzMwOTcyfQ.2Qu3VfWprm-e6H82jeHjy4v0AcH10aX8Z7DdyITvfdcQN08eq02EIIIg269cF_4SRqzKvWquWYE7N2UaDKWa7w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"customerId\": \"6123725dd7b2627e04ede388\",\r\n\"stockId\": 1,\r\n\"quantity\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9092/order/v1/new-order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9092",
+							"path": [
+								"order",
+								"v1",
+								"new-order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list order by date-range",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJndWxpeiIsImlhdCI6MTYyOTY0ODI3OCwiZXhwIjoxNjI5NjY2Mjc4fQ.22JhQYjNkcNS0o7ZTVnba-aNqGgKnluER_X8ZEMe66jGg7GUAqklOgTNucdBCQ8kRitEy25Jz31WGijD1QF9sA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"customerId\": \"612227ca602ffe7a65b8293b\",\r\n\"stockId\": \"1\",\r\n\"quantity\": 4,\r\n\"startDate\": \"2019-06-22T15:50:11.888+00:00\",\r\n\"endDate\": \"2023-08-22T15:50:11.888+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9092/order/v1/list/date-range",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9092",
+							"path": [
+								"order",
+								"v1",
+								"list",
+								"date-range"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get order by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJndWxpeiIsImlhdCI6MTYyOTcxMjk3MiwiZXhwIjoxNjI5NzMwOTcyfQ.2Qu3VfWprm-e6H82jeHjy4v0AcH10aX8Z7DdyITvfdcQN08eq02EIIIg269cF_4SRqzKvWquWYE7N2UaDKWa7w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9092/order/v1/id?orderId=6122720d3e40782efefc24f1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9092",
+							"path": [
+								"order",
+								"v1",
+								"id"
+							],
+							"query": [
+								{
+									"key": "orderId",
+									"value": "6122720d3e40782efefc24f1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Statistics Controller",
+			"item": [
+				{
+					"name": "get monthly statistic",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJndWxpeiIsImlhdCI6MTYyOTcxMjk3MiwiZXhwIjoxNjI5NzMwOTcyfQ.2Qu3VfWprm-e6H82jeHjy4v0AcH10aX8Z7DdyITvfdcQN08eq02EIIIg269cF_4SRqzKvWquWYE7N2UaDKWa7w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"customerId\": \"612227ca602ffe7a65b8293b\",\r\n\"month\": 8,\r\n\"year\": 2021\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9096/statistics/v1/monthly-order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9096",
+							"path": [
+								"statistics",
+								"v1",
+								"monthly-order"
+							],
+							"query": [
+								{
+									"key": "customerId",
+									"value": "612227ca602ffe7a65b8293b",
+									"disabled": true
+								},
+								{
+									"key": "month",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "year",
+									"value": "2021",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Security",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"guliz\",\r\n    \"password\": \"guliz\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/security/v1/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"security",
+								"v1",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"guliz\",\r\n    \"password\": \"guliz\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/security/v1/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"security",
+								"v1",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

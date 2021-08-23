@@ -1,0 +1,208 @@
+---
+openapi: 3.0.1
+info:
+  title: defaultTitle
+  description: defaultDescription
+  version: 0.1
+servers:
+- url: http://localhost:9092
+paths:
+  /order/v1/new-order:
+    post:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customerId:
+                  type: string
+                stockId:
+                  type: string
+                quantity:
+                  type: integer
+            examples:
+              "0":
+                value: |-
+                  {
+                      "customerId": "6123725dd7b2627e04ede388",
+                      "stockId": 1,
+                      "quantity": 2
+                  }
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            text/plain;charset=UTF-8:
+              schema:
+                type: string
+              examples:
+                "0":
+                value: '{
+                    "orderId": "612373fa0539b94202d2649a",
+                    "customerId": "6123725dd7b2627e04ede388",
+                    "stockId": "1",
+                    "quantity": 2,
+                    "totalPrice": 6.0,
+                    "createdAt": "2021-08-23T10:10:02.157+00:00",
+                    "message": "new order is created.."
+                }'
+      servers:
+      - url: http://localhost:9092
+    servers:
+    - url: http://localhost:9092
+  /order/v1/list/date-range:
+    post:
+      description: Auto generated using Swagger Inspector
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customerId:
+                  type: string
+                stockId:
+                  type: string
+                quantity:
+                  type: integer
+                startDate:
+                  type: string
+                endDate:
+                  type: string
+            examples:
+              "0":
+                value: |-
+                  {
+                      "customerId": "612227ca602ffe7a65b8293b",
+                      "stockId": "1",
+                      "quantity": 4,
+                      "startDate": "2019-06-22T15:50:11.888+00:00",
+                      "endDate": "2023-08-22T15:50:11.888+00:00"
+                  }
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orderList:
+                    type: array
+                  message:
+                    type: string
+              examples:
+                "0":
+                  value: '{
+                              "orderList": [
+                                  {
+                                      "orderId": "6122720d3e40782efefc24f1",
+                                      "customerId": "612227ca602ffe7a65b8293b",
+                                      "stockId": "1",
+                                      "quantity": 2,
+                                      "totalPrice": 6.0,
+                                      "createdAt": "2021-08-22T15:49:33.093+00:00"
+                                  },
+                                  {
+                                      "orderId": "612272333e40782efefc24f2",
+                                      "customerId": "612227ca602ffe7a65b8293b",
+                                      "stockId": "1",
+                                      "quantity": 2,
+                                      "totalPrice": 6.0,
+                                      "createdAt": "2020-01-01T00:00:00.000+00:00"
+                                  },
+                                  {
+                                      "orderId": "612273371c016b62d0c72a82",
+                                      "customerId": "612227ca602ffe7a65b8293b",
+                                      "stockId": "1",
+                                      "quantity": 1,
+                                      "totalPrice": 3.0,
+                                      "createdAt": "2021-08-22T15:54:31.149+00:00"
+                                  },
+                                  {
+                                      "orderId": "612273531c016b62d0c72a83",
+                                      "customerId": "612227ca602ffe7a65b8293b",
+                                      "stockId": "1",
+                                      "quantity": 4,
+                                      "totalPrice": 12.0,
+                                      "createdAt": "2021-08-22T15:54:59.489+00:00"
+                                  },
+                                  {
+                                      "orderId": "612294bbbc49ff2add5c2ccc",
+                                      "customerId": "612227ca602ffe7a65b8293b",
+                                      "stockId": "1",
+                                      "quantity": 4,
+                                      "totalPrice": 12.0,
+                                      "createdAt": "2021-08-22T18:17:31.148+00:00"
+                                  },
+                                  {
+                                      "orderId": "6122a2fe2e270d09ccf83bfc",
+                                      "customerId": "612227ca602ffe7a65b8293b",
+                                      "stockId": "1",
+                                      "quantity": 4,
+                                      "totalPrice": 12.0,
+                                      "createdAt": "2021-08-22T19:18:22.752+00:00"
+                                  },
+                                  {
+                                      "orderId": "612373fa0539b94202d2649a",
+                                      "customerId": "6123725dd7b2627e04ede388",
+                                      "stockId": "1",
+                                      "quantity": 2,
+                                      "totalPrice": 6.0,
+                                      "createdAt": "2021-08-23T10:10:02.157+00:00"
+                                  }
+                              ],
+                              "message": "7 element found with given date range."
+                          }'
+      servers:
+      - url: http://localhost:9092
+    servers:
+    - url: http://localhost:9092
+  /order/v1/id:
+    get:
+      description: Auto generated using Swagger Inspector
+      parameters:
+        - name: orderId
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+          example: 6122720d3e40782efefc24f1
+      responses:
+        "200":
+          description: Auto generated using Swagger Inspector
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              examples:
+                "0":
+                  value: '{
+                    "orderId": "6122720d3e40782efefc24f1",
+                    "customerId": "612227ca602ffe7a65b8293b",
+                    "stockId": "1",
+                    "quantity": 2,
+                    "totalPrice": 6.0,
+                    "createdAt": "2021-08-22T15:49:33.093+00:00",
+                    "message": ""
+                  }'
+      servers:
+      - url: http://localhost:9092
+    servers:
+    - url: http://localhost:9092
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: http://yourauthurl.com
+          scopes:
+            scope_name: Enter your scopes here
