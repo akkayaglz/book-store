@@ -6,6 +6,7 @@ import com.guliz.bookstore.order.controller.model.OrderResponse;
 import com.guliz.bookstore.order.mapper.OrderMapper;
 import com.guliz.bookstore.order.service.OrderService;
 import com.guliz.bookstore.order.service.model.OrderDto;
+import com.guliz.bookstore.order.service.model.StatisticDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -58,5 +59,11 @@ public class OrderControllerImpl implements OrderController {
         orderListResponse.setMessage(orderDtos.isEmpty() ? "No order found with given date range."
                 : orderDtos.size() + " element found with given date range.");
         return ResponseEntity.ok(orderListResponse);
+    }
+
+    @Override
+    public ResponseEntity<StatisticDto> getMonthlyStatistic(String customerId, int month, int year) {
+
+        return ResponseEntity.ok(orderService.getMontlyStatistic(month, year));
     }
 }

@@ -6,16 +6,22 @@ import com.guliz.bookstore.order.mapper.OrderMapper;
 import com.guliz.bookstore.order.service.exception.OrderServiceException;
 import com.guliz.bookstore.order.service.model.OrderDto;
 import com.guliz.bookstore.order.service.model.OrderStockDto;
+import com.guliz.bookstore.order.service.model.StatisticDto;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Month;
+import java.time.Year;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
+import java.util.stream.IntStream;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -78,6 +84,26 @@ public class OrderServiceImpl implements OrderService {
         return orderEntityList.stream()
                 .map(orderMapper::toOrderDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public StatisticDto getMontlyStatistic(int month, int year) {
+        List<OrderEntity> orderEntityList = orderRepository.findByCustomQuery(year, month);
+        if(orderEntityList.isEmpty()){
+            throw new RuntimeException("sdmakd");
+        }
+        StatisticDto statisticDto = new StatisticDto();
+        statisticDto.setMonth(month);
+        statisticDto.setTotalOrderCount(orderEntityList.size());
+        statisticDto.setTotalBookCount(IntStream.of(orderEntityList.stream()
+                .mapToInt(OrderEntity::getQuantity)
+                .toArray())
+                .sum());
+        statisticDto.setTotalPurchasedAmount(DoubleStream.of(orderEntityList.stream()
+                .mapToDouble(OrderEntity::getTotalPrice)
+                .toArray())
+                .sum());
+        return statisticDto;
     }
 
     private OrderEntity placeTheOrder(OrderDto orderDto, OrderStockDto orderStockDto) {
